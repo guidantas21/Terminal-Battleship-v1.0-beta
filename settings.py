@@ -1,4 +1,4 @@
-DEBUG = False
+DEBUG = True
 
 CLEAN_TERMINAL = True
 
