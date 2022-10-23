@@ -92,7 +92,7 @@ class Enemy:
         return direction
 
 
-    def moviement_probability(self, ship_row, ship_col) -> list:
+    def movement_probability(self, ship_row, ship_col) -> list:
         "Define a the probabilistic weight of each possible position based on the direction tendency"
 
         direction = self.direction_tendency(ship_row, ship_col)
@@ -138,7 +138,7 @@ class Enemy:
 
         # can move to all position -> diferent probalities of movement based o the direnction tendecy
         if len(possible_positions) == 8:
-            prob = self.moviement_probability(ship_row, ship_col)
+            prob = self.movement_probability(ship_row, ship_col)
 
             next_pos_index = choices(range(8), weights=prob)[0]
 
