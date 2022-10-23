@@ -142,14 +142,15 @@ class Enemy:
 
             next_pos_index = choices(range(8), weights=prob)[0]
 
+            debug("Weight of each possible enemy position", prob)
+            debug("Enemy next position index", next_pos_index)
+
         # restrict movement (corner or edge cases) -> same probality of movement
         else:
             next_pos_index = randint(0,len(possible_positions)-1)
 
         self.row, self.col = possible_positions[next_pos_index]
 
-        debug("Weight of each possible enemy position", prob)
-        debug("Enemy next position index", next_pos_index)
 
         
         
