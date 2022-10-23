@@ -88,11 +88,12 @@ class Battleship:
             self.update_board()
             self.print_board()
 
-            debug("Enemy position", (self.enemy.row, self.enemy.col))
             debug("Ship position", (self.ship.row, self.ship.col))
             debug("Ship shots", self.ship.shots)
             
             # move enemy
+            debug("Enemy position", (self.enemy.row, self.enemy.col))
+            debug("All possible enemy positions", self.enemy.possible_pos())
 
             attack_input = self.ship.input_attack_coord()
 
