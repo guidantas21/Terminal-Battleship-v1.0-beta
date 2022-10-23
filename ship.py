@@ -20,7 +20,7 @@ class Ship:
         self.shots = SHIP["total shots"]
 
     
-    def input_attack_coord(self) -> str:
+    def input_attack(self) -> str:
         "Input the coordenate os the attack, ex: A2 or 3D"
 
         while True:
@@ -38,3 +38,28 @@ class Ship:
                     return coord
 
             print(colored(COLORS["red"],SHIP["messages"]["invalid input"]))
+
+
+    def attack(self) -> tuple:
+        "Translate the attack input into attack coordenates (row,col)"
+
+        while True:
+            # raw input -> ex A2
+            coord = self.input_attack()
+
+            # row -> A2 -> 2 -> 1 
+            attack_row = int(coord[1]) - 1
+
+            # col is the index of its letter on the coord letter list -> A -> 0
+            for i, letter in enumerate(self.coord_letters):
+                if coord[0] == letter:
+                    attack_col = i
+            
+            # attack is the coordenates are different from the ship
+            if attack_row != self.row or attack_col != self.col:
+                self.shots -= 1
+
+                return attack_row, attack_col
+            
+            else:
+                print(colored(COLORS["yellow"],SHIP["messages"]["ship fire"]))
