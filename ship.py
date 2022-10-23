@@ -10,7 +10,7 @@ class Ship:
 
         # position
         self.row = self.SIZE - 2
-        self.col = self.size // 2 
+        self.col = self.SIZE // 2 
 
         # characters for the board
         self.char = colored(SHIP["color"], SHIP["char"])

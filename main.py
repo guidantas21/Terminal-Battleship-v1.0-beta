@@ -14,11 +14,11 @@ class Battleship:
         else:
             self.SIZE = SIZE["default"]
 
+        # coord letters -> cols: letters (A,B,C,...) rows: numers (1,2,3..) 
+        self.coord_letters = ALPHA[0 : self.SIZE]
+
         # grid character -> each node of the grid is represented by a character
         self.grid_char = colored(GRID["color"], GRID["char"])
-
-        # create board
-        self.setup_board()
 
 
         # OBJECTS -------------------
@@ -30,16 +30,6 @@ class Battleship:
         "Check if the passed size is valid"
 
         return SIZE["min"] <= size <= SIZE["max"]
-
-
-    def setup_board(self) -> None:
-        "Add all the elements on the game board"
-
-        # coord letters -> cols: letters (A,B,C,...) rows: numers (1,2,3..) 
-        self.coord_letters = ALPHA[0 : self.SIZE]
-
-        # create empty board
-        self.board = self.empty_board()
 
     
     def empty_board(self) -> list:
@@ -69,6 +59,16 @@ class Battleship:
             print("\n")
 
 
+    def update_board(self) -> None:
+        "Update the state of the board and of the elements on it"
+
+        # empty board
+        self.board = self.empty_board()
+
+        # add ship on the board
+        self.board[self.ship.row][self.ship.col] = self.ship.char
+
+
     def run(self) -> None:
         "Execute the game"
 
@@ -77,7 +77,8 @@ class Battleship:
 
             debug("Board size", self.SIZE)
             debug("Grid character", self.grid_char)
-
+            
+            self.update_board()
             self.print_board()
             
 
