@@ -1,4 +1,16 @@
-DEBUG = True
+COLORS = {
+    "red": (255,0,0),
+    "green": (0,255,0),
+    "blue": (0,0,255),
+    "light blue": (0,128,128),
+    "white": (255,255,255)
+}
+
+DEBUG = {
+    "active": True,
+    "color": COLORS["light blue"]
+}
+
 
 CLEAN_TERMINAL = False
 
@@ -15,18 +27,14 @@ MESSAGES = {
     "defeat": "DEFEAT!"
 }
 
-COLORS = {
-    "red": (255,0,0),
-    "green": (0,255,0),
-    "blue": (0,0,255),
-    "light blue": (0,128,128),
-    "white": (255,255,255)
-}
-
 SHIP = {
     "color": COLORS["blue"],
     "char": "S",
     "total shots": 10,
+    "messages": {
+        "input attack coord": "(input) Input attack coordenates: ",
+        "invalid input": "(error) Invalid input, try again! (ex: a2 or d3)"
+    }
 }
 
 GRID = {

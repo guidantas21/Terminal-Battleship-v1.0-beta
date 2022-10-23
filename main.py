@@ -92,6 +92,17 @@ class Battleship:
             debug("Ship position", (self.ship.row, self.ship.col))
             debug("Ship shots", self.ship.shots)
             
+            # move enemy
+
+            attack_input = self.ship.input_attack_coord()
+
+            debug("Attack input", attack_input)
+
+
+
+
+
+
 
 
 

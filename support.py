@@ -9,8 +9,8 @@ def colored(rgb, text):
 def debug(text, info):
     "Log info for debug some info while the game is running"
 
-    if DEBUG:
-        print(f"(debug) {text}: {info}")
+    if DEBUG["active"]:
+        print(colored(DEBUG["color"], f"(debug) {text}: {info}"))
 
 def clean_terminal():
     "Clean terminal"
