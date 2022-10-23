@@ -1,5 +1,7 @@
 from settings import *
 from support import *
+from ship import Ship
+
 
 class Battleship:
     def __init__(self, size=SIZE["default"]) -> None:
@@ -17,6 +19,11 @@ class Battleship:
 
         # create board
         self.setup_board()
+
+
+        # OBJECTS -------------------
+
+        self.ship = Ship(self.SIZE)
 
 
     def is_size_valid(self, size) -> bool:
