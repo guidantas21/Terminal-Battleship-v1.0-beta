@@ -1,6 +1,7 @@
 from settings import *
 from support import *
 from ship import Ship
+from enemy import Enemy
 
 
 class Battleship:
@@ -24,6 +25,7 @@ class Battleship:
         # OBJECTS -------------------
 
         self.ship = Ship(self.SIZE)
+        self.enemy = Enemy(self.SIZE)
 
 
     def is_size_valid(self, size) -> bool:
@@ -65,8 +67,11 @@ class Battleship:
         # empty board
         self.board = self.empty_board()
 
-        # add ship on the board
+        # add ship to the board
         self.board[self.ship.row][self.ship.col] = self.ship.char
+
+        # add enemy to the board
+        self.board[self.enemy.row][self.enemy.col] = self.enemy.char
 
 
     def run(self) -> None:
@@ -77,9 +82,15 @@ class Battleship:
 
             debug("Board size", self.SIZE)
             debug("Grid character", self.grid_char)
+            debug("Enemy char", self.enemy.char)
+            debug("Ship char", self.ship.char)
             
             self.update_board()
             self.print_board()
+
+            debug("Enemy position", (self.enemy.row, self.enemy.col))
+            debug("Ship position", (self.ship.row, self.ship.col))
+            debug("Ship shots", self.ship.shots)
             
 
 
