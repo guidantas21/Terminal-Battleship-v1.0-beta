@@ -20,7 +20,7 @@ class Ship:
         self.shots = SHIP["total shots"]
 
     
-    def input_attack_coord(self) -> list:
+    def input_attack_coord(self) -> str:
         "Input the coordenate os the attack, ex: A2 or 3D"
 
         while True:
