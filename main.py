@@ -27,8 +27,12 @@ class Battleship:
         self.ship = Ship(self.SIZE)
         self.enemy = Enemy(self.SIZE)
 
-        # EXECUTE
+        # FUNCTIONS -----------------
+
         self.place_elements()
+
+        # VARIABLES -----------------
+        self.round = 0
 
 
     def is_size_valid(self, size) -> bool:
@@ -76,6 +80,10 @@ class Battleship:
 
             print("\n")
 
+    
+    def print_status(self):
+        print(f"Round: {self.round}  Shots: {self.ship.shots}  Ship: {self.ship.char}  Enemy: {self.enemy.char}  Attack: {self.ship.attack_char}")
+
 
     def update_board(self) -> None:
         "Update the state of the board and of the elements on it"
@@ -104,8 +112,10 @@ class Battleship:
             debug("Enemy character", self.enemy.char)
             debug("Ship character", self.ship.char)
             debug("Attack character", self.ship.attack_char)
-            
+
+            self.round += 1
             self.print_board()
+            self.print_status()
             self.update_board()
             
 
