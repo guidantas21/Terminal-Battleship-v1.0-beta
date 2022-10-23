@@ -151,6 +151,8 @@ class Enemy:
 
         self.row, self.col = possible_positions[next_pos_index]
 
+        debug("Enemy next position", (self.row, self.col))
+
 
         
         

@@ -27,6 +27,9 @@ class Battleship:
         self.ship = Ship(self.SIZE)
         self.enemy = Enemy(self.SIZE)
 
+        # EXECUTE
+        self.place_elements()
+
 
     def is_size_valid(self, size) -> bool:
         "Check if the passed size is valid"
@@ -38,6 +41,19 @@ class Battleship:
         "Create a 2d list that represents the game board empty"
 
         return [[self.grid_char for j in range(self.SIZE)] for i in range(self.SIZE)]
+
+
+    def place_elements(self) -> None:
+        "Place the basic elements on the board"
+
+        # empty board
+        self.board = self.empty_board()
+
+        # add ship to the board
+        self.board[self.ship.row][self.ship.col] = self.ship.char
+
+        # add enemy to the board
+        self.board[self.enemy.row][self.enemy.col] = self.enemy.char
 
     
     def print_board(self) -> None:
@@ -64,14 +80,16 @@ class Battleship:
     def update_board(self) -> None:
         "Update the state of the board and of the elements on it"
 
-        # empty board
-        self.board = self.empty_board()
+        self.place_elements()
 
-        # add ship to the board
-        self.board[self.ship.row][self.ship.col] = self.ship.char
+        # change enemy position
+        self.enemy.move(self.ship.row, self.ship.col)
 
-        # add enemy to the board
-        self.board[self.enemy.row][self.enemy.col] = self.enemy.char
+        # get attack coordenates
+        attack_row, attack_col = self.ship.attack()
+
+        # add attack inidicator to the board
+        self.board[attack_row][attack_col] = self.ship.attack_char
 
 
     def run(self) -> None:
@@ -82,22 +100,13 @@ class Battleship:
 
             debug("Board size", self.SIZE)
             debug("Grid character", self.grid_char)
-            debug("Enemy char", self.enemy.char)
-            debug("Ship char", self.ship.char)
+            debug("Enemy character", self.enemy.char)
+            debug("Ship character", self.ship.char)
+            debug("Attack character", self.ship.attack_char)
             
-            self.update_board()
             self.print_board()
-
-            debug("Ship position", (self.ship.row, self.ship.col))
-            debug("Ship shots", self.ship.shots)
+            self.update_board()
             
-            self.enemy.move(self.ship.row, self.ship.col)
-
-            debug("Enemy next position", (self.enemy.row, self.enemy.col))
-            
-
-            attack_input = self.ship.input_attack_coord()
-
 
 
 if __name__ == "__main__":
