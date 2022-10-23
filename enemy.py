@@ -1,6 +1,6 @@
 from settings import *
 from support import *
-from random import randint
+from random import randint, choices
 
 class Enemy:
     def __init__(self, size) -> None:
@@ -90,3 +90,70 @@ class Enemy:
             direction[1] = None
         
         return direction
+
+
+    def moviement_probability(self, ship_row, ship_col) -> list:
+        "Define a the probabilistic weight of each possible position based on the direction tendency"
+
+        direction = self.direction_tendency(ship_row, ship_col)
+
+        debug("Enemy direction tendency", direction)
+
+        # every position starts with the same weight
+        prob = [ENEMY["normal weight"] for _ in range(8)]
+
+        # if the position matches with the direction -> higher weight
+
+        # VERTICAL --------------------------------------
+
+        if direction[0] == "down":
+            for i in range(5,8):
+                prob[i] = ENEMY["high weight"]
+
+        elif direction[0] == "up":
+            for i in range(0,3):
+                prob[i] = ENEMY["high weight"]
+
+        # HORIZONTAL ------------------------------------
+
+        if direction[1] == "left":
+            prob[0] = ENEMY["high weight"]
+            prob[3] = ENEMY["high weight"]
+            prob[5] = ENEMY["high weight"]
+
+        elif direction[1] == "right":
+            prob[2] = ENEMY["high weight"]
+            prob[4] = ENEMY["high weight"]
+            prob[7] = ENEMY["high weight"]
+
+        return prob
+            
+
+    def move(self, ship_row, ship_col) -> None:
+        "Move the position of the enemy based on the direction tendency"
+
+        possible_positions = self.possible_pos()
+
+        debug("All possible enemy positions", possible_positions)
+
+        # can move to all position -> diferent probalities of movement based o the direnction tendecy
+        if len(possible_positions) == 8:
+            prob = self.moviement_probability(ship_row, ship_col)
+
+            next_pos_index = choices(range(8), weights=prob)[0]
+
+        # restrict movement (corner or edge cases) -> same probality of movement
+        else:
+            next_pos_index = randint(0,len(possible_positions)-1)
+
+        self.row, self.col = possible_positions[next_pos_index]
+
+        debug("Weight of each possible enemy position", prob)
+        debug("Enemy next position index", next_pos_index)
+
+        
+        
+
+        
+
+

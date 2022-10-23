@@ -91,10 +91,10 @@ class Battleship:
             debug("Ship position", (self.ship.row, self.ship.col))
             debug("Ship shots", self.ship.shots)
             
-            # move enemy
-            debug("Enemy position", (self.enemy.row, self.enemy.col))
-            debug("All possible enemy positions", self.enemy.possible_pos())
-            debug("Enemy direction tendency", self.enemy.direction_tendency(self.ship.row, self.ship.col))
+            self.enemy.move(self.ship.row, self.ship.col)
+
+            debug("Enemy next position", (self.enemy.row, self.enemy.col))
+            
 
             attack_input = self.ship.input_attack_coord()
 
