@@ -81,7 +81,9 @@ class Battleship:
             print("\n")
 
     
-    def print_status(self):
+    def print_status(self) -> None:
+        "Print game status"
+
         print(f"Round: {self.round}  Shots: {self.ship.shots}  Ship: {self.ship.char}  Enemy: {self.enemy.char}  Attack: {self.ship.attack_char}")
 
 
