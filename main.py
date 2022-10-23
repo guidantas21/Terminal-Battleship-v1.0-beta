@@ -80,10 +80,11 @@ class Battleship:
     def update_board(self) -> None:
         "Update the state of the board and of the elements on it"
 
-        self.place_elements()
-
         # change enemy position
         self.enemy.move(self.ship.row, self.ship.col)
+
+        # add elements to the board
+        self.place_elements()
 
         # get attack coordenates
         attack_row, attack_col = self.ship.attack()
