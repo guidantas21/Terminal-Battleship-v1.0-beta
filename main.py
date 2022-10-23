@@ -33,6 +33,7 @@ class Battleship:
 
         # VARIABLES -----------------
         self.round = 0
+        self.active = True
 
 
     def is_size_valid(self, size) -> bool:
@@ -97,28 +98,53 @@ class Battleship:
         self.place_elements()
 
         # get attack coordenates
-        attack_row, attack_col = self.ship.attack()
+        self.attack_row, self.attack_col = self.ship.attack()
 
         # add attack inidicator to the board
-        self.board[attack_row][attack_col] = self.ship.attack_char
+        self.board[self.attack_row][self.attack_col] = self.ship.attack_char
+
+
+    def defeat(self) -> None:
+        "Lose the game"
+
+        clean_terminal()
+
+        self.print_board()
+        print(MESSAGES["defeat"])
+        self.active = False
+
+
+    def victory(self) -> None:
+        "Win the game"
+
+        clean_terminal()
+
+        self.print_board()
+        print(MESSAGES["victory"])
+        self.active = False
+
+
+    def check_gameover(self) -> None:
+        "Verify if there's victory ou defeat"
+
+        if self.ship.shots <= 0:
+            self.defeat()
+        
+        elif self.attack_row == self.enemy.row and self.attack_col == self.enemy.col:
+            self.victory()
 
 
     def run(self) -> None:
         "Execute the game"
 
-        while True:
+        while self.active:
             clean_terminal()
-
-            debug("Board size", self.SIZE)
-            debug("Grid character", self.grid_char)
-            debug("Enemy character", self.enemy.char)
-            debug("Ship character", self.ship.char)
-            debug("Attack character", self.ship.attack_char)
 
             self.round += 1
             self.print_board()
             self.print_status()
             self.update_board()
+            self.check_gameover()
             
 
 

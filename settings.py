@@ -8,12 +8,11 @@ COLORS = {
 }
 
 DEBUG = {
-    "active": True,
+    "active": False,
     "color": COLORS["light blue"]
 }
 
-
-CLEAN_TERMINAL = False
+CLEAN_TERMINAL = True
 
 ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
