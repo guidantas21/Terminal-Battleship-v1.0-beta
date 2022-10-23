@@ -65,21 +65,23 @@ class Battleship:
         "Print the game board on the terminal"
 
         # colored row coord indicators -> A, B, C, D ...
-        print(' ', end="    ")
+        print("\t\t\t\t ", end="")
         for l in self.coord_letters:
-            print(colored(GRID["coord color"], l), end="    ")
+            print("\t",colored(GRID["coord color"], l), end="")
         
         print("\n")
 
         # colored row coord inidcators -> 1, 2, 3, 4 ...
         for n,i in enumerate(range(self.SIZE)):
-            print(colored(GRID["coord color"], n+1), end="    ")
+            print("\t\t\t\t",colored(GRID["coord color"], n+1), end="")
 
             # each element of the board
             for j in range(self.SIZE):
-                print(self.board[i][j], end="    ")
+                print("\t",self.board[i][j], end="")
 
             print("\n")
+
+        print("\n")
 
     
     def print_status(self) -> None:
@@ -108,9 +110,8 @@ class Battleship:
         "Lose the game"
 
         clean_terminal()
+        print(colored(COLORS["red"],ASCII_ART["defeat"]))
 
-        self.print_board()
-        print(MESSAGES["defeat"])
         self.active = False
 
 
@@ -118,9 +119,8 @@ class Battleship:
         "Win the game"
 
         clean_terminal()
+        print(colored(COLORS["blue"],ASCII_ART["victory"]))
 
-        self.print_board()
-        print(MESSAGES["victory"])
         self.active = False
 
 
@@ -141,6 +141,8 @@ class Battleship:
             clean_terminal()
 
             self.round += 1
+            print(colored(COLORS["white"],LOGO_ASCII))
+            # print(SHIP_ASCII)
             self.print_board()
             self.print_status()
             self.update_board()

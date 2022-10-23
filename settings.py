@@ -1,3 +1,5 @@
+from ascii_text import *
+
 COLORS = {
     "white": (255,255,255),
     "red": (255,0,0),
@@ -5,6 +7,13 @@ COLORS = {
     "green": (0,255,0),
     "blue": (0,0,255),
     "light blue": (0,128,128),
+}
+
+ASCII_ART = {
+    "logo": LOGO_ASCII,
+    "title": TITLE_SLANT_ASCII,
+    "victory": VICTORY_ASCII,
+    "defeat": DEFEAT_ASCII
 }
 
 DEBUG = {
@@ -22,10 +31,6 @@ SIZE = {
     "min": 6
 }
 
-MESSAGES = {
-    "victory": "VICTORY!",
-    "defeat": "DEFEAT!"
-}
 
 ENEMY = {
     "color": COLORS["red"],
