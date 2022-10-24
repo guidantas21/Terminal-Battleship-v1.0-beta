@@ -44,7 +44,7 @@ SHIP = {
     "char": "S",
     "total shots": 10,
     "messages": {
-        "input attack coord": "(input) Input attack coordenates: ",
+        "input attack coord": "(input) Attack coordenates: ",
         "invalid input": "(error) Invalid input, try again! (ex: a2 or d3)",
         "ship fire": f"(invalid) You inputed the coordenate of the ship! Shoot the enemy ({ENEMY['char']}) position."
     }
