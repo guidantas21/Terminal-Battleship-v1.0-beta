@@ -39,7 +39,9 @@ class Ship:
                 elif not coord[0].isdigit() and coord[1].isdigit():
                     if 0 < int(coord[1]) < self.SIZE and coord[0] in self.coord_letters:
                         return coord
-                        
+                    
+                else:
+                    print(colored(COLORS["red"],SHIP["messages"]["invalid input"]))
             else:
                 print(colored(COLORS["red"],SHIP["messages"]["invalid input"]))
 
