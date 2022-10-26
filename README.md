@@ -17,10 +17,25 @@
     - This project is an exercise of some basics of [Object-Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming), this way, I organized the code in Battleship class (main.py), Ship class (ship.py), Enemy class (enemy.py). Also, I stored the most of the game constants and setting on a seperate file (settings.py), where the user can easily change colors, characters, messages, ASCII arts, total of shots, and even access the debug mode (prints the game information while it's running). To simplify some small details like print colored text, clean the terminal and print debug info, I created functions for all those features that are not directly related to the game in a separate file (support.py)
 
     2. #### Game
+    - The Battlefield class (main.py) is basically resposible to run the game (Battleship().run()), every round it prints the board and status bar, updates the state of the ship and enemy on the board, and check if the enemy got shot (victory) or if the enemy has reached the position of the ship (defeat).
 
     3. #### Ship
+    - The Ship class (ship.py) is really simple, it stores some ship attributes like: character, attack character, position and the number of shots you have. The only action the ship does is attack, so we have a method to get a valid coordenate input (Ship()input_attack()) and a method to translate those board coordenates into 2 dimensional array coordenates and return it (Ship().attack()), those coordenates will be used by the Battleship class update the attack on the board.
 
     4. #### Enemy
+    - The Enemy class (enemy.py) is the most fun, also the most complex (is not complex, but I spent more time figuring out this one), it stores the enemy character and position. So, for the implemantation of the algorithm of movement I wanted something the was not completely random, but also not completely predictable, this way a came up with a logic different of probabilites of movement based on the position of the the ship. The algorithm explanation:
+
+        1. Get all possible positions:
+            - As the enemy can move 1 node per round, it can go up (row-1,col), down (row+1,col), left (row,col-1), right (row,col+1), up left (row-1,col-1), down left (row+1,col-1), up right (row-1,col+1), down right (row+1,col+1)
+
+        2. Get only the valid positions:
+            - For example, If the enemy reached the to of the board, it cannot move up, up right or up left, those are invalid moves. We want only the positions that the enemy is allowed to move to.
+
+        3. Get the direction tendency:
+            - For this step, we need to know the position of the ship, once we want to define the direction of the in relation to the enemy. To do that, we compare the the rows and columns, for example: if the enemy row is greater than the ship row, the enemy needs to move down, and if enemy col is less than ship col, the enemy needs to move right. The result is an array with the row direction and the column direction [down, right]. 
+        
+        4. Define the probability (weight) of each position:
+            - Based on the direction tendecy, we are going to define the which positions the enemy is more likely to move. Basically, we are going to create an array with the weight of each position, there are 2 types of weight (defined on setting.py): normal weight (1 by default) and high weight (2 by default). NOT FINISHED
 
     5. #### ASCII art
 
