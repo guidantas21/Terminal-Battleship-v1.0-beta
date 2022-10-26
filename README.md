@@ -14,6 +14,7 @@
 3. ### Implementation
 
     1. #### General
+    - This project is an exercise of some basics of [Object-Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming), this way, I organized the code in Battleship class (main.py), Ship class (ship.py), Enemy class (enemy.py). Also, I stored the most of the game constants and setting on a seperate file (settings.py), where the user can easily change colors, characters, messages, ASCII arts, total of shots, and even access the debug mode (prints the game information while it's running). To simplify some small details like print colored text, clean the terminal and print debug info, I created functions for all those features that are not directly related to the game in a separate file (support.py)
 
     2. #### Game
 
