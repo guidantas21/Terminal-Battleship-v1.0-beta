@@ -23,7 +23,7 @@
     - The Ship class (ship.py) is really simple, it stores some ship attributes like: character, attack character, position and the number of shots you have. The only action the ship does is attack, so we have a method to get a valid coordenate input (Ship()input_attack()) and a method to translate those board coordenates into 2 dimensional array coordenates and return it (Ship().attack()), those coordenates will be used by the Battleship class update the attack on the board.
 
     4. #### Enemy
-    - The Enemy class (enemy.py) is the most fun, also the most complex (is not complex, but I spent more time figuring out this one), it stores the enemy character and position. So, for the implemantation of the algorithm of movement I wanted something the was not completely random, but also not completely predictable, this way a came up with a logic different of probabilites of movement based on the position of the the ship. The algorithm explanation:
+    - The Enemy class (enemy.py) is the most fun, also the most complex (is not complex, but I spent more time figuring out this one), it stores the enemy character, position and . So, for the implemantation of the algorithm of movement I wanted something the was not completely random, but also not completely predictable, this way a came up with a logic different of probabilites of movement based on the position of the the ship. The algorithm explanation:
 
         1. Get all possible positions:
             - As the enemy can move 1 node per round, it can go up (row-1,col), down (row+1,col), left (row,col-1), right (row,col+1), up left (row-1,col-1), down left (row+1,col-1), up right (row-1,col+1), down right (row+1,col+1)
@@ -31,13 +31,20 @@
         2. Get only the valid positions:
             - For example, If the enemy reached the to of the board, it cannot move up, up right or up left, those are invalid moves. We want only the positions that the enemy is allowed to move to.
 
-        3. Get the direction tendency:
-            - For this step, we need to know the position of the ship, once we want to define the direction of the in relation to the enemy. To do that, we compare the the rows and columns, for example: if the enemy row is greater than the ship row, the enemy needs to move down, and if enemy col is less than ship col, the enemy needs to move right. The result is an array with the row direction and the column direction [down, right]. 
-        
-        4. Define the probability (weight) of each position:
-            - Based on the direction tendecy, we are going to define the which positions the enemy is more likely to move. Basically, we are going to create an array with the weight of each position, there are 2 types of weight (defined on setting.py): normal weight (1 by default) and high weight (2 by default). NOT FINISHED
+        3. Check if movement case:
+            - if the all positions are valid:
+                1. Get the direction tendency:
+                    - For this step, we need to know the position of the ship, once we want to define the direction of the in relation to the enemy. To do that, we compare the the rows and columns, for example: if the enemy row is greater than the ship row, the enemy needs to move down, and if enemy col is less than ship col, the enemy needs to move right. The result is an array with the row direction and the column direction [down, right]. 
+                
+                2. Define the probability (weight) of each position:
+                    - Based on the direction tendecy, we are going to define the which positions the enemy is more likely to move. Basically, we are going to create an array with the weight of each position, there are 2 types of weight (defined on setting.py): normal weight (1 by default) and high weight (5 by default). If the position corresponds to the direction tendency, it gets high weight.
 
-    5. #### ASCII art
+                3. Get a random index for possible movements array (considering the different weights.
+            
+            - if the movement is restricted (enemy on walls):
+                - Get a random index for possible movements array.
+
+        4. Set the position of the enemy to the position pointed by the index on the possible positions array.
 
 
 4. ### Ideas for the next version
