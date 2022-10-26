@@ -60,7 +60,10 @@
     - Don't get me wrong, the art that I got from the internet is very cool, but I like to combine things and make a more specific thing for the game and what I did was kinda improvised... so for the next version it would be nice to have more detailed ASCII art and texts. 
 
 ## How to run
-- TODO (Necessary push the project to GitHub)
+
+1. Install [Python interpreter](https://www.python.org/downloads/)
+2. Download the code, command: `git clone https://github.com/guidantas21/Terminal-Battleship-v1.0-beta.git`
+3. Run the main.py file, command: `python main.py`
 
 
 ## How to play

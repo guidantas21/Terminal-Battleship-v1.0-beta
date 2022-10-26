@@ -142,7 +142,6 @@ class Battleship:
 
             self.round += 1
             print(colored(COLORS["white"],LOGO_ASCII))
-            # print(SHIP_ASCII)
             self.print_board()
             self.print_status()
             self.update_board()
